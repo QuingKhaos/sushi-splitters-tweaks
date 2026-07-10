@@ -1,3 +1,5 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.0
-Date: ????
+Date: 2026-09-10
+  Changes:
+    - Add splitter icon to sushi splitter recipes which are crafted from splitters.
