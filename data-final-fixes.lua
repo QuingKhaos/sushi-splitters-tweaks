@@ -7,25 +7,25 @@ local sushi_splitters_recipes = khaoslib_recipe.find(function (recipe)
   return recipe.name:match("sushi") ~= nil and recipe.name:match("upgrade") == nil
 end)
 
-for _, recipe in pairs(sushi_splitters_recipes) do
-  local splitter = khaoslib_recipe.get_ingredient(recipe, function (ingredient)
+for _, recipe_name in pairs(sushi_splitters_recipes) do
+  local splitter = khaoslib_recipe.get_ingredient(recipe_name, function (ingredient)
     return ingredient.name:match("splitter") ~= nil and ingredient.name:match("sushi") == nil
   end)
 
   if splitter then
-    local recipe_instance = khaoslib_recipe:load(recipe)
-    if recipe_instance:count_icons() == 0 then
-      recipe_instance:set_icons(khaoslib_item.get_icons(recipe_instance:get_result(function (result)
+    local recipe = khaoslib_recipe:load(recipe_name)
+    if recipe:count_icons() == 0 then
+      recipe:set_icons(khaoslib_item.get_icons(recipe:get_result(function (result)
         return result.name:match("sushi") ~= nil
       end).name))
     end
 
-    local icons = khaoslib_entity:load("splitter", data.raw["item"][splitter.name].place_result):get_icons()
+    local icons = khaoslib_entity:load("splitter", khaoslib_item.get(splitter.name).place_result):get_icons()
     if #icons > 0 then
-      recipe_instance:add_icon {icon = icons[1].icon, icon_size = icons[1].icon_size, scale = 0.25, shift = {-8, 8}}
+      recipe:add_icon {icon = icons[1].icon, icon_size = icons[1].icon_size, scale = 0.25, shift = {-8, 8}}
     end
 
-    recipe_instance:commit()
+    recipe:commit()
   end
 end
 
@@ -36,6 +36,6 @@ end)
 
 for _, entity in pairs(sushi_splitters_entities) do
   khaoslib_entity:load("splitter", entity)
-    :set_icons(khaoslib_item.get_icons(data.raw["splitter"][entity].minable.result))
+    :set_icons(khaoslib_item.get_icons(khaoslib_entity.get_minable("splitter", entity).result))
     :commit()
 end
