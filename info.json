@@ -1,16 +1,14 @@
 {
   "name": "sushi-splitters-tweaks",
   "title": "Sushi Splitters Tweaks",
-  "description": "Opinionated tweaks to Sushi Splitters.",
+  "description": "[DEPRECATED] Functionality migrated to Sushi Splitters and More.",
   "author": "QuingKhaos",
   "homepage": "https://discord.gg/SYmkaDjFCt",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "factorio_version": "2.0",
   "dependencies": [
     "base >= 2.0.77",
 
-    "khaoslib >= 1.8.0",
-
-    "sushi-splitters >= 0.2.1"
+    "sushi-splitters-and-more >= 1.0.0"
   ]
 }
